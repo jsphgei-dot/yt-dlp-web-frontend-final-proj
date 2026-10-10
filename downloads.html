@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<head>
+    <title>Yt-dlp Downloads</title>
+</head>
+
+<body>
+    <h1>Yt-dlp Downloads</h1>
+    <h2>Your downloads go here.</h2>
+    <p>Video = <strong id="output">Loading...</strong></p>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search)
+
+        const textReceived = urlParams.get('url')
+
+        if(textReceived) {
+          document.getElementById('output').textContent = textReceived
+        } else {
+          document.getElementById('output').textContent = "Empty"
+        }
+    </script>
+</body>
