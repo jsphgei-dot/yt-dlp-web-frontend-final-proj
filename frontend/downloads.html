@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<head>
+    <title>Yt-dlp Downloads</title>
+</head>
+
+<body>
+    <h1>Yt-dlp Downloads</h1>
+    <h2>Your downloads go here.</h2>
+    <p>Video = <strong id="output">Loading...</strong></p>
+    <p>Title = <strong id="title">Loading...</strong></p>
+    <p>Uploader = <strong id="uploader">Loading...</strong></p>
+    <p>Duration = <strong id="duration">Loading...</strong></p>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search)
+
+        const textReceived = urlParams.get('url')
+
+        const fields = ['title', 'uploader', 'duration']
+
+        function formatDuration(seconds) {
+          const minutes = Math.floor(seconds / 60)
+          const remainder = String(seconds % 60).padStart(2, '0')
+          return `${minutes}:${remainder}`
+        }
+
+        async function loadInfo(url) {
+          document.getElementById('output').textContent = url
+
+          try {
+            const response = await fetch(`/api/info?url=${encodeURIComponent(url)}`)
+            const info = await response.json()
+
+            if (!response.ok) {
+              throw new Error(info.detail)
+            }
+
+            document.getElementById('title').textContent = info.title
+            document.getElementById('uploader').textContent = info.uploader
+            document.getElementById('duration').textContent = formatDuration(info.duration)
+          } catch (error) {
+            for (const field of fields) {
+              document.getElementById(field).textContent = 'Error: ' + error.message
+            }
+          }
+        }
+
+        if (textReceived) {
+          loadInfo(textReceived)
+        } else {
+          document.getElementById('output').textContent = 'Empty'
+          for (const field of fields) {
+            document.getElementById(field).textContent = 'Empty'
+          }
+        }
+    </script>
+</body>
