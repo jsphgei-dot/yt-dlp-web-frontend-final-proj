@@ -27,6 +27,7 @@ def info(url: str):
         "title": info_dict.get("title"),
         "uploader": info_dict.get("uploader"),
         "duration": info_dict.get("duration"),
+        "thumbnail": info_dict.get("thumbnail"),
     }
 
 

@@ -5,8 +5,9 @@
 
 <body>
     <h1>Yt-dlp Downloads</h1>
-    <h2>Your downloads go here.</h2>
+    <h2>Just imagine the video downloading right now.</h2>
     <p>Video = <strong id="output">Loading...</strong></p>
+    <p>Thumbnail = <img id="thumbnail" alt="Video thumbnail" width="320" hidden></p>
     <p>Title = <strong id="title">Loading...</strong></p>
     <p>Uploader = <strong id="uploader">Loading...</strong></p>
     <p>Duration = <strong id="duration">Loading...</strong></p>
@@ -23,24 +24,35 @@
           return `${minutes}:${remainder}`
         }
 
+        function setAll(message) {
+          for (const field of fields) {
+            document.getElementById(field).textContent = message
+          }
+        }
+
         async function loadInfo(url) {
           document.getElementById('output').textContent = url
 
           try {
             const response = await fetch(`/api/info?url=${encodeURIComponent(url)}`)
-            const info = await response.json()
+            const info = await response.json().catch(() => null)
 
+            if (!info) {
+              throw new Error(`API not found (status ${response.status}), open the site from the backend at http://localhost:8000`)
+            }
             if (!response.ok) {
               throw new Error(info.detail)
             }
-
             document.getElementById('title').textContent = info.title
             document.getElementById('uploader').textContent = info.uploader
             document.getElementById('duration').textContent = formatDuration(info.duration)
-          } catch (error) {
-            for (const field of fields) {
-              document.getElementById(field).textContent = 'Error: ' + error.message
+            if (info.thumbnail) {
+              const thumbnail = document.getElementById('thumbnail')
+              thumbnail.src = info.thumbnail
+              thumbnail.hidden = false
             }
+          } catch (error) {
+            setAll('Error: ' + error.message)
           }
         }
 
@@ -48,9 +60,7 @@
           loadInfo(textReceived)
         } else {
           document.getElementById('output').textContent = 'Empty'
-          for (const field of fields) {
-            document.getElementById(field).textContent = 'Empty'
-          }
+          setAll('Empty')
         }
     </script>
 </body>
