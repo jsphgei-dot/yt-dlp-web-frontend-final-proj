@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Web Yt-dlp - Format and metadata</title>
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <!-- Screen 2: file format chooser and metadata manipulator. -->
+        <header>
+            <h1>Web Yt-dlp</h1>
+            <div id="menu">
+                <a href="index.html">Link input</a>
+                <a class="current" href="format.html">Format and metadata</a>
+                <a href="progress.html">Download progress</a>
+            </div>
+        </header>
+        <main>
+            <section>
+                <h2>File format chooser and metadata manipulator</h2>
+                <!--
+                    Sample link only. This page does not read the query string from screen 1.
+                    id="source" is styled in css/style.css.
+                -->
+                <p>Link: <span id="source">https://youtu.be/example</span></p>
+                <!-- Continue sends name=value pairs to progress.html with GET. -->
+                <form action="progress.html" method="get">
+                    <div class="row">
+                        <label class="field-name" for="format">File format</label>
+                        <!-- The selected option's value is the one submitted for name="format". -->
+                        <select class="control" id="format" name="format">
+                            <option value="mp4" selected>mp4</option>
+                            <option value="webm">webm</option>
+                            <option value="mkv">mkv</option>
+                            <option value="mp3">mp3</option>
+                            <option value="m4a">m4a</option>
+                        </select>
+                    </div>
+                    <div class="row">
+                        <span class="field-name">Quality</span>
+                        <span class="choices">
+                            <!-- One shared name, so High / Medium / Low submit a single quality value. -->
+                            <input type="radio" id="high" name="quality" value="high" checked>
+                            <label for="high">High</label>
+                            <input type="radio" id="medium" name="quality" value="medium">
+                            <label for="medium">Medium</label>
+                            <input type="radio" id="low" name="quality" value="low">
+                            <label for="low">Low</label>
+                        </span>
+                    </div>
+                    <!-- .split places the parsed table beside the edit fields. See .pane-parsed and .pane-edit. -->
+                    <div class="split">
+                        <div class="pane-parsed">
+                            <h3>Parsed metadata</h3>
+                            <!-- Display only. th is the header row; td is the data. Nothing here is submitted. -->
+                            <table>
+                                <tr>
+                                    <th>Field</th>
+                                    <th>Value</th>
+                                </tr>
+                                <tr>
+                                    <td>Title</td>
+                                    <td>Course Intro</td>
+                                </tr>
+                                <tr>
+                                    <td>Artist</td>
+                                    <td>CPSC 349</td>
+                                </tr>
+                                <tr>
+                                    <td>Album</td>
+                                    <td>Web Programming</td>
+                                </tr>
+                                <tr>
+                                    <td>Year</td>
+                                    <td>2026</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="pane-edit">
+                            <h3>Edit and embed</h3>
+                            <div class="row">
+                                <label class="field-name" for="title">Title</label>
+                                <input class="control" type="text" id="title" name="title" value="Course Intro">
+                            </div>
+                            <div class="row">
+                                <label class="field-name" for="artist">Artist</label>
+                                <input class="control" type="text" id="artist" name="artist" value="CPSC 349">
+                            </div>
+                            <div class="row">
+                                <label class="field-name" for="album">Album</label>
+                                <input class="control" type="text" id="album" name="album" value="Web Programming">
+                            </div>
+                            <div class="row">
+                                <label class="field-name" for="year">Year</label>
+                                <input class="control" type="text" id="year" name="year" value="2026">
+                            </div>
+                            <div class="row">
+                                <span class="field-name">Embed</span>
+                                <span class="choices">
+                                    <!--
+                                        Each checkbox has its own name, so each checked box is its own name=value pair.
+                                        Uncheck one to leave that field out of the download request.
+                                    -->
+                                    <input type="checkbox" id="embed-title" name="embedTitle" value="title" checked>
+                                    <label for="embed-title">Title</label>
+                                    <input type="checkbox" id="embed-artist" name="embedArtist" value="artist" checked>
+                                    <label for="embed-artist">Artist</label>
+                                    <input type="checkbox" id="embed-album" name="embedAlbum" value="album" checked>
+                                    <label for="embed-album">Album</label>
+                                    <input type="checkbox" id="embed-year" name="embedYear" value="year" checked>
+                                    <label for="embed-year">Year</label>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit">Start download</button>
+                </form>
+            </section>
+        </main>
+        <footer>
+            <p>Web Yt-dlp</p>
+        </footer>
+    </body>
+</html>

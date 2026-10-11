@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Web Yt-dlp - Download progress</title>
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <!-- Screen 3: download progress. These three jobs are sample rows, not a live queue. -->
+        <header>
+            <h1>Web Yt-dlp</h1>
+            <div id="menu">
+                <a href="index.html">Link input</a>
+                <a href="format.html">Format and metadata</a>
+                <a class="current" href="progress.html">Download progress</a>
+            </div>
+        </header>
+        <main>
+            <section>
+                <h2>Download progress</h2>
+                <p>Jobs waiting on this host, including the folder chosen for each file.</p>
+                <!--
+                    id="queue" is the table the narrow-screen rules target.
+                    .cell-label is hidden on a wide screen (the th row is the header)
+                    and shown when the media query stacks each cell.
+                -->
+                <table id="queue">
+                    <tr>
+                        <th>Title</th>
+                        <th>Kind</th>
+                        <th>Format</th>
+                        <th>Folder</th>
+                        <th>Status</th>
+                    </tr>
+                    <tr>
+                        <td><span class="cell-label">Title: </span>Course Intro</td>
+                        <td><span class="cell-label">Kind: </span>Video</td>
+                        <td><span class="cell-label">Format: </span>mp4</td>
+                        <td><span class="cell-label">Folder: </span>C:\Downloads\yt-dlp</td>
+                        <td>
+                            <span class="cell-label">Status: </span>
+                            <div class="status-cell">
+                                <span>Downloading</span>
+                                <!-- .bar-60 sets the inner bar to 60% of .track. -->
+                                <div class="track">
+                                    <div class="bar bar-60"></div>
+                                </div>
+                                <span>60%</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span class="cell-label">Title: </span>Study Playlist Track</td>
+                        <td><span class="cell-label">Kind: </span>Music</td>
+                        <td><span class="cell-label">Format: </span>mp3</td>
+                        <td><span class="cell-label">Folder: </span>C:\Downloads\yt-dlp</td>
+                        <td>
+                            <span class="cell-label">Status: </span>
+                            <div class="status-cell">
+                                <span>Queued</span>
+                                <div class="track">
+                                    <div class="bar bar-0"></div>
+                                </div>
+                                <span>0%</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span class="cell-label">Title: </span>Lecture Demo</td>
+                        <td><span class="cell-label">Kind: </span>Video</td>
+                        <td><span class="cell-label">Format: </span>webm</td>
+                        <td><span class="cell-label">Folder: </span>C:\Downloads\yt-dlp</td>
+                        <td>
+                            <span class="cell-label">Status: </span>
+                            <div class="status-cell">
+                                <span>Complete</span>
+                                <!-- .bar-100 also switches the fill to green. -->
+                                <div class="track">
+                                    <div class="bar bar-100"></div>
+                                </div>
+                                <span>100%</span>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <h3>Status</h3>
+                <ol>
+                    <li>Course Intro is downloading (60%).</li>
+                    <li>Study Playlist Track is queued.</li>
+                    <li>Lecture Demo is complete.</li>
+                </ol>
+                <p><a href="index.html">Back to link input</a></p>
+            </section>
+        </main>
+        <footer>
+            <p>Web Yt-dlp</p>
+        </footer>
+    </body>
+</html>
