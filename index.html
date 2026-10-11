@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Web Yt-dlp - Link input</title>
+        <!-- Shared look for all three screens lives in one stylesheet. -->
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <!-- Screen 1: link input. header / main / footer are semantic regions. -->
+        <header>
+            <h1>Web Yt-dlp</h1>
+            <!-- id="menu" is the unique hook the stylesheet uses. class="current" marks this page. -->
+            <div id="menu">
+                <a class="current" href="index.html">Link input</a>
+                <a href="format.html">Format and metadata</a>
+                <a href="progress.html">Download progress</a>
+            </div>
+        </header>
+        <main>
+            <section>
+                <h2>Link input</h2>
+                <p>Paste a YouTube link, choose video or music, and pick a folder on the host machine.</p>
+                <!--
+                    method="get" puts successful controls in the query string:
+                    format.html?url=...&media=video&folder=...&queue=yes
+                    Only controls with a name attribute are submitted. The label text is not.
+                -->
+                <form action="format.html" method="get">
+                    <div class="row">
+                        <!-- for matches the input id so clicking the label focuses the field. -->
+                        <label class="field-name" for="url">YouTube link</label>
+                        <input class="control" type="text" id="url" name="url">
+                    </div>
+                    <div class="row">
+                        <span class="field-name">Media</span>
+                        <span class="choices">
+                            <!-- Same name="media" makes these one group: only the checked radio is submitted. -->
+                            <input type="radio" id="video" name="media" value="video" checked>
+                            <label for="video">Video</label>
+                            <input type="radio" id="music" name="media" value="music">
+                            <label for="music">Music</label>
+                        </span>
+                    </div>
+                    <div class="row">
+                        <label class="field-name" for="folder">Host folder</label>
+                        <input class="control" type="text" id="folder" name="folder" value="C:\Downloads\yt-dlp">
+                    </div>
+                    <div class="row">
+                        <span class="field-name">Queue</span>
+                        <span class="choices">
+                            <!-- An unchecked checkbox is left out of the request. value is what gets sent, not the label. -->
+                            <input type="checkbox" id="queue" name="queue" value="yes" checked>
+                            <label for="queue">Add to queue</label>
+                        </span>
+                    </div>
+                    <button type="submit">Continue</button>
+                </form>
+            </section>
+        </main>
+        <footer>
+            <p>Web Yt-dlp</p>
+        </footer>
+    </body>
+</html>
