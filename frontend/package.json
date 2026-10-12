@@ -1,15 +1,11 @@
 {
-  "dependencies": {
-    "http-server": "^14.1.1"
-  },
   "name": "ytdl-website",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "devDependencies": {},
   "scripts": {
-    "test": "npx http-server",
-    "start": "cd ../backend && .venv/bin/uvicorn server:app --reload"
+    "start": "cd ..\\backend && .venv\\Scripts\\uvicorn server:app --reload",
+    "start:unix": "cd ../backend && .venv/bin/uvicorn server:app --reload"
   },
   "keywords": [],
   "author": "",

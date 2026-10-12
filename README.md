@@ -25,3 +25,38 @@ Application Description: Feature rich self hostable web ui for downloading youtu
 1. Link input
 2. File format chooser and metadata manipulator
 3. Download progress page
+
+### Requirements
+
+1. Python version 3.10+
+2. Node.js
+
+### Setup
+
+From the project root, create the Python env and install backend requirements:
+
+```powershell
+cd backend
+python -m venv .venv
+.venv\Scripts\pip install -r requirements.txt
+```
+
+On macOS or Linux, use `python3 -m venv .venv` and `.venv/bin/pip install -r requirements.txt` instead.
+
+### Start the server
+
+From the `frontend` folder:
+
+```powershell
+npm start
+```
+
+or from the `backend` folder:
+
+```powershell
+.venv\Scripts\uvicorn server:app --reload
+```
+
+On macOS or Linux, use `npm run start:unix` or `.venv/bin/uvicorn server:app --reload` instead.
+
+Then navigate to http://localhost:8000 in your browser.
